@@ -37,7 +37,7 @@ begin
     while (lista <> nil) do begin
         provincia_origen:= lista^.dato.provincia_origen;
         contador_viajes:= 0;
-        while ((lista <> nill) and (lista^.dato.provincia_origen = provincia_origen)) do begin
+        while ((lista <> nil) and (lista^.dato.provincia_origen = provincia_origen)) do begin
             if (lista^.dato.kilometros_recorridos > 5000) then
                 cantidad_camiones:= cantidad_camiones + 1;
             contador_viajes:= contador_viajes + 1;
