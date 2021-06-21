@@ -83,7 +83,7 @@ end;
 
 procedure informarAyB (dato: t_cliente; monto_total: real);
 begin
- writeln('El cliente ', dato.nombre, '', dato.apellido, ' con DNI ', dato.dni, ' paga un total de $', monto_total);
+ writeln('El cliente ', dato.nombre, ' ', dato.apellido, ' con DNI ', dato.dni, ' paga un total de $', monto_total);
  if (validar_digitos(dato.dni)) then
   writeln('Y su DNI contiene al menos dos digitos 9');
 end;
