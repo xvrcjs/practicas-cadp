@@ -83,14 +83,9 @@ end;
 
 procedure informarAyB (dato: t_cliente; monto_total: real);
 begin
- writeln(dato.nombre);
- writeln(dato.apellido);
- writeln(dato.dni);
- writeln(monto_total);
- if (validar_digitos(dato.dni)) then begin
-  writeln(dato.nombre);
-  writeln(dato.apellido);
- end;
+ writeln('El cliente ', dato.nombre, '', dato.apellido, ' con DNI ', dato.dni, ' paga un total de $', monto_total);
+ if (validar_digitos(dato.dni)) then
+  writeln('Y su DNI contiene al menos dos digitos 9');
 end;
 
 procedure recorrer_y_calcular (lista: t_lista; vector: vector_monto_adicional);
@@ -134,7 +129,7 @@ VAR
 BEGIN 
  lista:= nil;
  cargarLista(lista);
- cargarVector(vector); // se dispone
+ //cargarVector(vector); // se dispone
  recorrer_y_calcular(lista, vector);
  writeln('ingrese el codigo a eliminar');
  readln(codigo);
