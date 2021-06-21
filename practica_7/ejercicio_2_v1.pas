@@ -129,7 +129,7 @@ VAR
 BEGIN 
  lista:= nil;
  cargarLista(lista);
- //cargarVector(vector); // se dispone
+ cargarVector(vector); // se dispone
  recorrer_y_calcular(lista, vector);
  writeln('ingrese el codigo a eliminar');
  readln(codigo);
