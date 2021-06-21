@@ -53,7 +53,7 @@ begin
   lista:= nuevo;
 end;
 
-procedure cargarlista(var lista: t_lista);
+procedure cargar_lista(var lista: t_lista);
 var 
   persona: t_persona;
 begin 
@@ -163,7 +163,7 @@ VAR
   dni: integer;
 begin
   lista:= nil;
-  cargarlista(lista);
+  cargar_lista(lista);
   inicializar_vector(vector);
   recorrer_y_calcular(lista,vector);
   writeln('Ingrese un dni para eliminar de la lista');
