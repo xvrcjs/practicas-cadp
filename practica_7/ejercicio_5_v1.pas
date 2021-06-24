@@ -95,7 +95,7 @@ var
 begin
     while (dni <> 0) do begin
         digito:= dni MOD 10;
-        if (digito MOD 2 <> 0)) then // puede ser también  digito MOD 2 = 1
+        if (digito MOD 2 = 0)) then // puede ser también  digito MOD 2 <> 1
             validar_dni:= false;
         dni:= dni DIV 10;
     end;
