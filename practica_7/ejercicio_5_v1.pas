@@ -29,6 +29,7 @@ type
     end;
 
     t_vector_camion = array [t_subrango] of t_camion;
+    t_vector_acumulador = array[t_subrango] of real;
 
     t_viaje = record
         codigo_viaje: integer;
@@ -102,32 +103,48 @@ begin
     validar_dni:= true;
 end;
 
+procedure obtener_maximo_minimo(vector: t_vector_acumulador; var codigo_maximo, codigo_minimo: t_subrango);
+var
+    indice: t_subrango;
+    kilometros_maximo, kilometros_minimo: real;
+begin
+    kilometros_maximo:= -1;
+    kilometros_minimo:= 99999999999;
+    for indice := 1 to LIMITE do begin
+        if (vector[indice] > kilometros_maximo) then begin
+            codigo_maximo:= indice;
+            kilometros_maximo:= vector[indice];
+        end;
+        if (vector[indice] > kilometros_minimo) then begin
+            codigo_minimo:= indice;
+            kilometros_minimo:= vector[indice];
+        end;
+    end;
+end;
+
+procedure inicializar_vector(var vector: t_vector_acumulador);
+var 
+    indice: t_subrango;
+begin
+    for indice := 1 to LIMITE do
+        vector[indice]:= vector[indice] + 1;
+end;
+
+
 procedure recorrer_e_informar(lista: t_lista_viaje; vector: t_vector_camion);
 var
-    patente_maximo, patente_minimo: string;
-    kilometros_maximo, kilometros_minimo: real;
+    vector_acumulador: t_vector_acumulador;
+    codigo_minimo, codigo_maximo: t_subrango;
     contador_viajes: integer;
     dato: t_viaje;
 begin
     if (lista <> nil) then begin
-        patente_maximo:= '';
-        patente_minimo:= '';
-
-        kilometros_maximo:= -1;
-        kilometros_minimo:= 9999999999;
-
+        inicializar_vector(vector_acumulador);
         contador_viajes:= 0;
         while (lista <> nil ) then begin
             dato:= lista^.dato;
-            if (dato.kilometros_recorridos > kilometros_maximo) then begin
-                patente_maximo:= vector[dato.codigo_camion].patente;
-                kilometros_maximo:= dato.kilometros_recorridos;
-            end;
 
-            if (dato.kilometros_recorridos < kilometros_minimo) then begin
-                patente_minimo:= vector[dato.codigo_camion].patente;
-                kilometros_minimo:= dato.kilometros_recorridos;
-            end;
+            vector_acumulador[dato.codigo_camion]:= vector_acumulador[dato.codigo_camion] + 1;
 
             if ((vector[dato.codigo_camion].capacidad > 30.5) and ((dato.anio_viaje - vector[dato.codigo_camion].anio_fabricacion > 5))) then
                 contador_viajes:= contador_viajes + 1;
@@ -136,9 +153,9 @@ begin
                 writeln('El chofer con el DNI ', dato.dni_chofer, ' contiene sólo dígitos pares');
             lista:= lista^.siguiente;
         end;
-
-        writeln('La patente del camión que más kilómetros recorridos posee es: ', patente_maximo, ' con ', kilometros_maximo, ' recorridos');
-        writeln('La patente del camión que menos kilómetros recorridos posee es: ', patente_minimo, ' con ', kilometros_mipatente_minimo, ' recorridos');
+        obtener_maximo_minimo(vector_acumulador, codigo_maximo, codigo_minimo);
+        writeln('La patente del camión que más kilómetros recorridos posee es: ', vector[codigo_maximo].patente, ' con ', vector_acumulador[codigo_maximo], ' recorridos');
+        writeln('La patente del camión que menos kilómetros recorridos posee es: ', vector[codigo_minimo].patente, ' con ', vector_acumulador[codigo_minimo], ' recorridos');
         writeln('La cantidad de viajes que se han realizado en camiones con capacidad mayor a 30,5 toneladas
         y que posean una antigüedad mayor a 5 años al momento de realizar el viaje es: ', contador_viajes);       
 
