@@ -144,7 +144,7 @@ begin
         while (lista <> nil ) then begin
             dato:= lista^.dato;
 
-            vector_acumulador[dato.codigo_camion]:= vector_acumulador[dato.codigo_camion] + 1;
+            vector_acumulador[dato.codigo_camion]:= vector_acumulador[dato.codigo_camion] + dato.kilometros_recorridos;
 
             if ((vector[dato.codigo_camion].capacidad > 30.5) and ((dato.anio_viaje - vector[dato.codigo_camion].anio_fabricacion > 5))) then
                 contador_viajes:= contador_viajes + 1;
