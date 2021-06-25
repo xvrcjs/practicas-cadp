@@ -115,7 +115,7 @@ begin
             codigo_maximo:= indice;
             kilometros_maximo:= vector[indice];
         end;
-        if (vector[indice] > kilometros_minimo) then begin
+        if (vector[indice] < kilometros_minimo) then begin
             codigo_minimo:= indice;
             kilometros_minimo:= vector[indice];
         end;
