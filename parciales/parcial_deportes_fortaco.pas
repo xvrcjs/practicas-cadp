@@ -11,19 +11,19 @@ program fortaco;
 const 
  dimF = 4;
 type 
- subrango= 1..dimF;
+ t_subrango= 1..dimF;
  
  t_cliente = record
   nombre: string;
   dni: integer;
   edad: integer;
-  tipo_suscripcion: subrango;
+  tipo_suscripcion: t_subrango;
  end;
 
- t_vector = array [subrango] of real;
+ t_vector = array [t_subrango] of real;
  
- t_lista = ^nodo_cliente;
- nodo_cliente = record 
+ t_lista = ^t_nodo_cliente;
+ t_nodo_cliente = record 
   dato: t_cliente;
   siguiente: t_lista;
  end;
